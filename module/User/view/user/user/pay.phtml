@@ -1,0 +1,24 @@
+<?php
+$title = 'Payment between Account';
+?>
+<h1 style="text-align: center;"><?php echo $this->escapeHtml($title); ?></h1>
+
+<?php
+$form->setAttribute('action', $this->url('user', array('action' => 'pay')));
+$form->prepare();
+
+echo '<div class="row" style="text-align: center;">';
+
+echo $this->form()->openTag($form);
+
+echo '<div class="form-group">';
+echo $this->formRow($form->get('payee_id'));
+echo '</div>';
+echo '<div class="form-group">';
+echo $this->formRow($form->get('amount'));
+echo '</div>';
+
+echo $this->formSubmit($form->get('submit'));
+echo $this->form()->closeTag();
+
+echo '</div>';

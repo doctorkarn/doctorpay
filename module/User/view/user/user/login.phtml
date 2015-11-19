@@ -1,0 +1,30 @@
+<?php
+$title = 'User Login';
+?>
+<h1 style="text-align: center;"><?php echo $this->escapeHtml($title); ?></h1>
+
+<?php
+$form->setAttribute('action', $this->url('user', array('action' => 'login')));
+$form->prepare();
+
+if(isset($msgs)) {
+     foreach ($msgs as $m) {
+         echo "<p>{$m}</p>";
+     }
+}
+
+echo '<div class="row" style="text-align: center;">';
+
+echo $this->form()->openTag($form);
+
+echo '<div class="form-group">';
+echo $this->formRow($form->get('username'));
+echo '</div>';
+echo '<div class="form-group">';
+echo $this->formRow($form->get('password'));
+echo '</div>';
+
+echo $this->formSubmit($form->get('submit'));
+echo $this->form()->closeTag();
+
+echo '</div>';

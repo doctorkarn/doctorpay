@@ -1,0 +1,60 @@
+<?php
+$title = 'My Infomation';
+?>
+<h1><?php // echo $this->escapeHtml($title); ?></h1>
+
+<h2>My Transaction #<?php echo $id; ?></h2>
+<p style="text-align: right">
+    <a class="btn btn-lg btn-primary" href="<?php echo $this->url('user', array('action'=>'pay'));?>"># Pay</a>
+    <a class="btn btn-lg btn-primary" href="<?php echo $this->url('user', array('action'=>'deposit'));?>">+ Deposit</a>
+    <a class="btn btn-lg btn-primary" href="<?php echo $this->url('user', array('action'=>'withdraw'));?>">- Withdraw</a>
+</p>
+<br/>
+
+<table class="table table-hover">
+<tr>
+    <th>Time</th>
+    <th>Type</th>
+    <th>Channel</th>
+    <th>Amount</th>
+    <th></th>
+</tr>
+<?php
+    $debit = 0;
+    $credit = 0;
+?>
+<?php foreach ($data as $row) : ?>
+<tr>
+    <td><?php echo $row['created_at'] ?></td>
+    <td><?php echo $row['type'] ?></td>
+    <td><?php echo $row['channel'] ?></td>
+    <td><?php if($row['code'] == 1 || $row['code'] == 3) {
+        echo '+'.number_format($row['amount']); 
+        $debit += $row['amount'];
+    } ?></td>
+    <td><?php if($row['code'] == 2 || $row['code'] == 4) {
+        echo '-'.number_format($row['amount']);
+        $credit += $row['amount'];
+    } ?></td>
+</tr>
+<?php endforeach; ?>
+<?php
+    $balance = $debit - $credit;
+    $format = number_format($balance);
+?>
+<tr>
+    <td><h3>Total</h3></td>
+    <td></td>
+    <td></td>
+    <?php 
+        if($balance >= 0) echo '<td><h3>+'.$format.'</h3></td><td></td>';
+        else              echo '<td></td><td><h3>'.$format.'</h3></td>';
+    ?>
+</tr>
+</table>
+
+<br/>
+<h2>My Profile</h2>
+<?php foreach ($users as $user) : ?>
+<?php var_dump($user); ?>
+<?php endforeach; ?>

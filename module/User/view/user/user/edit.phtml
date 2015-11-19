@@ -1,0 +1,68 @@
+<?php
+$title = 'Edit user';
+?>
+<h1 style="text-align: center;"><?php echo $this->escapeHtml($title); ?></h1>
+
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url(
+    'user',
+    array(
+        'action' => 'edit',
+        'id'     => $this->id,
+    )
+));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('account_id'));
+
+echo '<h2>Account info.</h2>';
+echo '<div class="form-group">';
+echo $this->formRow($form->get('email'));
+echo '</div>';
+echo '<div class="form-group">';
+echo $this->formRow($form->get('username'));
+echo '</div>';
+echo '<div class="form-group">';
+echo $this->formRow($form->get('password'));
+echo '</div>';
+echo '<div class="form-group">';
+echo $this->formRow($form->get('pin'));
+echo '</div>';
+//echo '<div class="form-group">';
+//echo $this->formRow($form->get('optional_email'));
+//echo '</div>';
+
+echo '<hr/>';
+echo '<h2>Profile info.</h2>';
+echo '<div class="form-group">';
+echo $this->formRow($form->get('first_name'));
+echo '</div>';
+echo '<div class="form-group">';
+echo $this->formRow($form->get('last_name'));
+echo '</div>';
+echo '<div class="form-group">';
+echo $this->formRow($form->get('company_name'));
+echo '</div>';
+echo '<div class="form-group">';
+echo $this->formRow($form->get('address_line1'));
+echo '</div>';
+echo '<div class="form-group">';
+echo $this->formRow($form->get('address_line2'));
+echo '</div>';
+echo '<div class="form-group">';
+echo $this->formRow($form->get('postal_code'));
+echo '</div>';
+echo '<div class="form-group">';
+echo $this->formRow($form->get('city'));
+echo '</div>';
+echo '<div class="form-group">';
+echo $this->formRow($form->get('country'));
+echo '</div>';
+echo '<div class="form-group">';
+echo $this->formRow($form->get('mobile_phone'));
+echo '</div>';
+
+echo $this->formSubmit($form->get('submit'));
+echo $this->form()->closeTag();
